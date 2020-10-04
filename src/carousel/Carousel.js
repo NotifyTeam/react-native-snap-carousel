@@ -764,9 +764,10 @@ export default class Carousel extends Component {
             wrappedRef.scrollToOffset(options);
         }
     }
-
     _onScroll (event) {
-        const { callbackOffsetMargin, enableMomentum, onScroll } = this.props;
+        const { callbackOffsetMargin, enableMomentum, onScroll, onScrollListener } = this.props;
+        
+        if (onScrollListener) onScrollListener(event);
 
         const scrollOffset = event ? this._getScrollOffset(event) : this._currentContentOffset;
         const nextActiveItem = this._getActiveItem(scrollOffset);
